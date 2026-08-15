@@ -1,7 +1,4 @@
-from typing import Any
-
-
 class Potion:
-    def __init__(self, name: Any, effect: Any) -> None:
+    def __init__(self, name: str, effect: dict) -> None:
         self.name = name
         self.effect = effect
