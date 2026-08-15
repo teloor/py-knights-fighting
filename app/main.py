@@ -96,53 +96,45 @@ def battle(knights_config: dict) -> dict:
         name=knights_config.get("lancelot").get("name"),
         power=knights_config.get("lancelot").get("power"),
         hp=knights_config.get("lancelot").get("hp"),
-        armours=knights_config.get("lancelot").get("armour"),
+        armour=knights_config.get("lancelot").get("armour"),
         weapon=knights_config.get("lancelot").get("weapon"),
         potion=knights_config.get("lancelot").get("potion")
     )
 
-    lancelot.use_armour()
-    lancelot.use_weapon()
-    lancelot.use_potions()
+    lancelot.ready_up()
 
     arthur = Knight(
         name=knights_config.get("arthur").get("name"),
         power=knights_config.get("arthur").get("power"),
         hp=knights_config.get("arthur").get("hp"),
-        armours=knights_config.get("arthur").get("armour"),
+        armour=knights_config.get("arthur").get("armour"),
         weapon=knights_config.get("arthur").get("weapon"),
         potion=knights_config.get("arthur").get("potion")
     )
 
-    arthur.use_armour()
-    arthur.use_weapon()
-    arthur.use_potions()
+    arthur.ready_up()
 
     mordred = Knight(
         name=knights_config.get("mordred").get("name"),
         power=knights_config.get("mordred").get("power"),
         hp=knights_config.get("mordred").get("hp"),
-        armours=knights_config.get("mordred").get("armour"),
+        armour=knights_config.get("mordred").get("armour"),
         weapon=knights_config.get("mordred").get("weapon"),
         potion=knights_config.get("mordred").get("potion")
     )
 
-    mordred.use_armour()
-    mordred.use_weapon()
-    mordred.use_potions()
+    mordred.ready_up()
 
     red_knight = Knight(
         name=knights_config.get("red_knight").get("name"),
         power=knights_config.get("red_knight").get("power"),
         hp=knights_config.get("red_knight").get("hp"),
-        armours=knights_config.get("red_knight").get("armour"),
+        armour=knights_config.get("red_knight").get("armour"),
         weapon=knights_config.get("red_knight").get("weapon"),
         potion=knights_config.get("red_knight").get("potion")
     )
 
-    red_knight.use_armour()
-    red_knight.use_weapon()
-    red_knight.use_potions()
+    red_knight.ready_up()
 
     KnightsDuel.clash(lancelot, mordred)
     KnightsDuel.clash(arthur, red_knight)

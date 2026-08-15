@@ -8,7 +8,7 @@ class Knight:
                  name: str,
                  power: int,
                  hp: int,
-                 armours: list,
+                 armour: list,
                  weapon: dict,
                  potion: dict
                  ) -> None:
@@ -18,37 +18,42 @@ class Knight:
 
         self.protection = 0
 
-        self.armours = []
+        self.armour = []
 
-        for piece in armours:
-            self.armours.append(Armour(name=piece.get("name"),
-                                       protection=piece.get("protection")
-                                       ))
+        for piece in armour:
+            self.armour.append(Armour(name=piece.get("name"),
+                                      protection=piece.get("protection")
+                                      ))
         self.weapon = Weapon(weapon)
 
-        self.potions = None
+        self.potion = None
         if potion:
-            self.potions = Potion(name=potion.get("name"),
-                                  effect=potion.get("effect"))
+            self.potion = Potion(name=potion.get("name"),
+                                 effect=potion.get("effect"))
 
     def use_armour(self) -> None:
-        for piece in self.armours:
+        for piece in self.armour:
             self.protection += piece.protection
 
-    def use_potions(self) -> None:
-        if self.potions:
-            hp = self.potions.effect.get("hp")
-            power = self.potions.effect.get("power")
-            protection = self.potions.effect.get("protection")
+    def use_potion(self) -> None:
+        if self.potion:
+            hp = self.potion.effect.get("hp")
+            power = self.potion.effect.get("power")
+            protection = self.potion.effect.get("protection")
 
-            if hp:
+            if hp is not None:
                 self.hp += hp
 
-            if power:
+            if power is not None:
                 self.power += power
 
-            if protection:
+            if protection is not None:
                 self.protection += protection
 
     def use_weapon(self) -> None:
         self.power += self.weapon.power
+
+    def ready_up(self) -> None:
+        self.use_armour()
+        self.use_weapon()
+        self.use_potion()
