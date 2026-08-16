@@ -1,5 +1,4 @@
-from app.Fighter.Knight import Knight
-from app.Battle.KnightsDuel import KnightsDuel
+from app.fighter.knight import Knight
 
 
 KNIGHTS = {
@@ -90,6 +89,17 @@ KNIGHTS = {
 }
 
 
+def clash(unit1: Knight, unit2: Knight) -> None:
+    unit1.hp -= unit2.power - unit1.protection
+    unit2.hp -= unit1.power - unit2.protection
+
+    if unit1.hp < 0:
+        unit1.hp = 0
+
+    if unit2.hp < 0:
+        unit2.hp = 0
+
+
 def battle(knights_config: dict) -> dict:
 
     lancelot = Knight(
@@ -136,8 +146,8 @@ def battle(knights_config: dict) -> dict:
 
     red_knight.ready_up()
 
-    KnightsDuel.clash(lancelot, mordred)
-    KnightsDuel.clash(arthur, red_knight)
+    clash(lancelot, mordred)
+    clash(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
