@@ -101,59 +101,19 @@ def clash(unit1: Knight, unit2: Knight) -> None:
 
 
 def battle(knights_config: dict) -> dict:
+    knights = []
 
-    lancelot = Knight(
-        name=knights_config.get("lancelot").get("name"),
-        power=knights_config.get("lancelot").get("power"),
-        hp=knights_config.get("lancelot").get("hp"),
-        armour=knights_config.get("lancelot").get("armour"),
-        weapon=knights_config.get("lancelot").get("weapon"),
-        potion=knights_config.get("lancelot").get("potion")
-    )
+    for config in knights_config.values():
+        knight = Knight(**config)
+        knight.ready_up()
+        knights.append(knight)
 
-    lancelot.ready_up()
-
-    arthur = Knight(
-        name=knights_config.get("arthur").get("name"),
-        power=knights_config.get("arthur").get("power"),
-        hp=knights_config.get("arthur").get("hp"),
-        armour=knights_config.get("arthur").get("armour"),
-        weapon=knights_config.get("arthur").get("weapon"),
-        potion=knights_config.get("arthur").get("potion")
-    )
-
-    arthur.ready_up()
-
-    mordred = Knight(
-        name=knights_config.get("mordred").get("name"),
-        power=knights_config.get("mordred").get("power"),
-        hp=knights_config.get("mordred").get("hp"),
-        armour=knights_config.get("mordred").get("armour"),
-        weapon=knights_config.get("mordred").get("weapon"),
-        potion=knights_config.get("mordred").get("potion")
-    )
-
-    mordred.ready_up()
-
-    red_knight = Knight(
-        name=knights_config.get("red_knight").get("name"),
-        power=knights_config.get("red_knight").get("power"),
-        hp=knights_config.get("red_knight").get("hp"),
-        armour=knights_config.get("red_knight").get("armour"),
-        weapon=knights_config.get("red_knight").get("weapon"),
-        potion=knights_config.get("red_knight").get("potion")
-    )
-
-    red_knight.ready_up()
-
-    clash(lancelot, mordred)
-    clash(arthur, red_knight)
+    for i in range(0, len(knights) // 2):
+        clash(knights[i], knights[i + 2])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights
     }
 
 
